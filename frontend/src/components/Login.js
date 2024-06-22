@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Avatar,
   Button,
@@ -14,9 +14,11 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
+  const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -28,7 +30,9 @@ const Login = () => {
       const response = await axios.post('http://localhost:8000/api-auth/login/', credentials, {
         withCredentials: true,
       });
-      console.log(response.data);
+      if (response.status === 200) {
+        login();
+      }
     } catch (error) {
       console.error(error);
     }

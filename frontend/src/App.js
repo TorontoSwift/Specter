@@ -5,20 +5,31 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Content from './components/Content';
 import Login from './components/Login';
+import AuthProvider from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (
-    <Router>
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <Header />
-        <Sidebar />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Content />} />
-        </Routes>
-      </Box>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Header />
+                  <Sidebar />
+                  <Content />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Box>
+      </Router>
+    </AuthProvider>
   );
 };
 
