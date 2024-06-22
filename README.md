@@ -1,0 +1,1 @@
+Backend activate: .\venv\Scripts\Activate
