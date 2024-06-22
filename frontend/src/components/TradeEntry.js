@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 
 const TradeEntry = () => {
   const [trade, setTrade] = useState({
@@ -18,7 +18,7 @@ const TradeEntry = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/trades/', trade);
+      await api.post('/trades/', trade);
       // Handle success (e.g., show notification, reset form)
     } catch (error) {
       // Handle error
