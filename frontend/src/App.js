@@ -1,14 +1,17 @@
 import React from 'react';
-import TradeEntry from './components/TradeEntry';
-import TradeList from './components/TradeList';
+import { CssBaseline, Box, Toolbar } from '@mui/material';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Content from './components/Content';
 
 const App = () => {
   return (
-    <div className="App">
-      <h1>Trade Journal</h1>
-      <TradeEntry />
-      <TradeList />
-    </div>
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <Header />
+      <Sidebar />
+      <Content />
+    </Box>
   );
 };
 
