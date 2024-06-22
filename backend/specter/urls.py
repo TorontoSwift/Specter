@@ -21,6 +21,5 @@ from .views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('trades.urls')),
-    path('', home, name='home'),  # Add this line
+    path('api/', include('trades.urls'))
 ]
